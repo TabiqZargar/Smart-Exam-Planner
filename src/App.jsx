@@ -170,8 +170,7 @@ export default function App() {
     setError("");
     const c = { examDate, subjects, dailyHours };
     const p = generateSchedule(c);
-    const payload = { config: c, plan: p };
-    saveData(payload);
+    saveData({ config: c, plan: p });
     setConfig(c);
     setPlan(p);
   };
@@ -383,9 +382,7 @@ export default function App() {
                   {plan.map((day) => (
                     <tr
                       key={day.id}
-                      className={`${day.completed ? "row-done" : ""} ${
-                        day.isRevision ? "row-revision" : ""
-                      }`}
+                      className={`${day.completed ? "row-done" : ""} ${day.isRevision ? "row-revision" : ""}`}
                     >
                       <td>{day.displayDate}</td>
                       <td>
@@ -402,7 +399,7 @@ export default function App() {
                           <ul className="subject-list">
                             {day.subjects.map((s, i) => (
                               <li key={i} className="subject-list-item">
-                                <span className="subject-name">{s.name}</span>
+                                <span className="subject-name">{s.name}</span>{" "}
                                 <span className="subject-hours">
                                   {s.hours}h
                                 </span>
@@ -430,16 +427,20 @@ export default function App() {
             </div>
           </>
         ) : (
-          <p className="empty">
-            No study days available. Choose a future date.
-          </p>
+          <div className="empty-state">
+            <div className="empty-state-icon">📅</div>
+            <p>No study days available.</p>
+            <p style={{ fontSize: "0.85rem" }}>
+              Choose a future exam date to get started.
+            </p>
+          </div>
         )}
       </main>
 
       <footer className="footer">
         <p className="footer-name">Tabiq Zargar</p>
         <p className="footer-email">
-          <a href="mailto:tabiqzargar@icloud.com">tabiqzargar@icloud.com</a>
+          <a href="mailto:zargartabiq@gmail.com">zargartabiq@gmail.com</a>
         </p>
         <a
           href="https://digitalheroesco.com"
