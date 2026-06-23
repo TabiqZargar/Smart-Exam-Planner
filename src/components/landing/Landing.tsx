@@ -49,20 +49,41 @@ export default function Landing({ onGetStarted, stats }: LandingProps) {
       <section className="landing-hero">
         <div className="landing-hero-bg" aria-hidden="true" />
         <div className="landing-hero-content">
-          <div className="landing-badge">⏵ study_runtime v2.0</div>
-          <h1 className="landing-title">
-            Your All-in-One
-            <br />
-            <span className="gradient-text">Study Operating System</span>
-          </h1>
-          <p className="landing-subtitle">
-            A productivity operating system for developers. Plan, track, and
-            compile knowledge with AI-powered study pipelines.
-          </p>
-          <div className="landing-hero-actions">
-            <button className="btn btn-primary landing-cta" onClick={onGetStarted}>
-              initialize_study_runtime
-            </button>
+          <div className="landing-hero-text">
+            <div className="landing-badge">⏵ study_runtime v2.0</div>
+            <h1 className="landing-title">
+              Your All-in-One
+              <br />
+              <span className="gradient-text">Study Operating System</span>
+            </h1>
+            <p className="landing-subtitle">
+              A productivity operating system for developers. Plan, track, and
+              compile knowledge with AI-powered study pipelines.
+            </p>
+            <div className="landing-hero-actions">
+              <button className="btn btn-primary landing-cta" onClick={onGetStarted}>
+                initialize_study_runtime
+              </button>
+            </div>
+          </div>
+          <div className="landing-hero-visual">
+            <div className="terminal-window">
+              <div className="terminal-header">
+                <span className="terminal-dot" />
+                <span className="terminal-dot" />
+                <span className="terminal-dot" />
+                <span className="terminal-title">study_runtime</span>
+              </div>
+              <div className="terminal-body">
+                <div className="terminal-line"><span className="terminal-prompt">$</span><span className="terminal-output info">python3 study_runtime.py</span></div>
+                <div className="terminal-line"><span className="terminal-output success">[✓] Study engine initialized</span></div>
+                <div className="terminal-line"><span className="terminal-output success">[✓] 3 exams synced</span></div>
+                <div className="terminal-line"><span className="terminal-output success">[✓] Schedule generated (14 days)</span></div>
+                <div className="terminal-line"><span className="terminal-output success">[✓] Focus sessions: 12 completed</span></div>
+                <div className="terminal-line" style={{ marginTop: "0.5rem" }}><span className="terminal-prompt">$</span><span className="terminal-output">system.status</span></div>
+                <div className="terminal-line"><span className="terminal-output">Ready to compile knowledge<span className="terminal-cursor" /></span></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
