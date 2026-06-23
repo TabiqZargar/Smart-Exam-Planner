@@ -32,4 +32,5 @@ As a BCA student, I often needed a simple way to organize exam preparation and r
 ## Author
 
 Tabiq Zargar
-Email: your-email@example.com
+Email: zargartabiq@gmail.com
+
