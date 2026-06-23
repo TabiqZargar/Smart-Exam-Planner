@@ -984,6 +984,8 @@ select.input {
   border-bottom: 1px solid var(--card-border);
   background: var(--bg-soft);
 }
+@media (min-width: 1280px) { .landing-nav { padding: 1rem 3rem; } }
+@media (min-width: 1920px) { .landing-nav { padding: 1.15rem 4rem; } }
 .landing-logo {
   font-size: 1rem; font-weight: 700; font-family: var(--font-mono);
   color: var(--accent);
@@ -1009,10 +1011,12 @@ select.input {
   content: '';
   position: absolute; top: -20%; left: 50%;
   transform: translateX(-50%);
-  width: 600px; height: 600px;
+  width: min(600px, 80vw); height: min(600px, 80vw);
   background: radial-gradient(circle, rgba(0,255,157,0.06) 0%, transparent 60%);
   pointer-events: none;
 }
+@media (min-width: 1280px) { .landing-hero::before { width: 800px; height: 800px; } }
+@media (min-width: 1920px) { .landing-hero::before { width: 1000px; height: 1000px; } }
 .landing-hero-bg { display: none; }
 .landing-hero-content { position: relative; z-index: 1; }
 .landing-badge {
@@ -1030,11 +1034,14 @@ select.input {
   font-size: 2.75rem; font-weight: 800;
   letter-spacing: -0.04em; line-height: 1.15;
   margin-bottom: 0.875rem;
-  max-width: 640px;
+  max-width: min(640px, 90%);
   margin-left: auto; margin-right: auto;
   color: var(--text);
   font-family: var(--font-ui);
 }
+@media (min-width: 1280px) { .landing-title { max-width: 720px; } }
+@media (min-width: 1536px) { .landing-title { max-width: 800px; } }
+@media (min-width: 1920px) { .landing-title { max-width: 900px; } }
 .gradient-text {
   background: var(--accent-gradient);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -1043,11 +1050,14 @@ select.input {
 .landing-subtitle {
   font-size: 0.95rem;
   color: var(--text-secondary);
-  max-width: 480px;
+  max-width: min(480px, 90%);
   margin: 0 auto 1.5rem;
   line-height: 1.6;
   font-family: var(--font-mono);
 }
+@media (min-width: 1280px) { .landing-subtitle { max-width: 560px; font-size: 1rem; } }
+@media (min-width: 1536px) { .landing-subtitle { max-width: 600px; font-size: 1.05rem; } }
+@media (min-width: 1920px) { .landing-subtitle { max-width: 650px; font-size: 1.1rem; } }
 .landing-hero-actions { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
 
 .landing-section { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
@@ -1137,10 +1147,12 @@ select.input {
   content: '';
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px; height: 400px;
+  width: min(400px, 70vw); height: min(400px, 70vw);
   background: radial-gradient(circle, rgba(0,255,157,0.05) 0%, transparent 60%);
   pointer-events: none;
 }
+@media (min-width: 1280px) { .landing-cta-section::before { width: 600px; height: 600px; } }
+@media (min-width: 1920px) { .landing-cta-section::before { width: 800px; height: 800px; } }
 
 .landing-footer {
   text-align: center;
@@ -1150,6 +1162,8 @@ select.input {
   font-size: 0.7rem;
   font-family: var(--font-mono);
 }
+@media (min-width: 1280px) { .landing-footer { padding: 2rem; } }
+@media (min-width: 1920px) { .landing-footer { padding: 2.5rem; } }
 .landing-footer-links {
   display: flex; justify-content: center; gap: 1.25rem;
 }
@@ -1303,6 +1317,9 @@ select.input {
   .landing-features { grid-template-columns: repeat(3, 1fr); }
   .landing-hero { padding: 6rem 3rem 7rem; }
   .landing-title { font-size: 2.5rem; }
+  .landing-stats { grid-template-columns: repeat(4, 1fr); }
+  .landing-stat-value { font-size: 1.65rem; }
+  .landing-feature-card { padding: 1.5rem; }
   .pomodoro-circle { width: 260px; height: 260px; }
   .stat-card { padding: 1.15rem 1.5rem; }
   .stat-card-value { font-size: 1.65rem; }
@@ -1314,6 +1331,10 @@ select.input {
   .content { padding: 1.5rem 2.5rem; }
   .landing-hero { padding: 7rem 4rem 8rem; }
   .landing-title { font-size: 2.75rem; }
+  .landing-stats { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .landing-stat-value { font-size: 1.75rem; }
+  .landing-stat-card { padding: 1.25rem; }
+  .landing-feature-card { padding: 1.65rem; }
   .pomodoro-circle { width: 280px; height: 280px; }
   .pomodoro-timer { font-size: 4rem; }
   .calendar-day { min-height: 80px; }
@@ -1330,6 +1351,10 @@ select.input {
   .landing-hero { padding: 8rem 5rem 9rem; }
   .landing-title { font-size: 3rem; }
   .landing-section { padding: 3.5rem 2rem; }
+  .landing-stats { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .landing-stat-value { font-size: 1.85rem; }
+  .landing-stat-card { padding: 1.5rem; }
+  .landing-feature-card { padding: 1.75rem; }
   .pomodoro-circle { width: 300px; height: 300px; }
   .pomodoro-timer { font-size: 4.5rem; }
   .calendar-day { min-height: 90px; font-size: 0.85rem; }
@@ -1344,6 +1369,14 @@ select.input {
   .content { padding: 2rem 3rem; }
   .stat-card-value { font-size: 1.85rem; }
   .stat-card { padding: 1.5rem 2rem; }
+  .landing-hero { padding: 10rem 6rem 11rem; }
+  .landing-title { font-size: 3.5rem; max-width: 1000px; }
+  .landing-subtitle { font-size: 1.15rem; max-width: 700px; }
+  .landing-section { max-width: 1800px; padding: 4rem 3rem; }
+  .landing-features { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .landing-feature-card { padding: 2rem; }
+  .landing-stats { gap: 1.5rem; }
+  .landing-stat-card { padding: 1.75rem; }
   .pomodoro-circle { width: 340px; height: 340px; }
   .pomodoro-timer { font-size: 5rem; }
 }
