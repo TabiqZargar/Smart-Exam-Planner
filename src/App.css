@@ -341,7 +341,7 @@ select.input {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   gap: 0.75rem; margin-bottom: 1.25rem;
 }
 .stat-card {
@@ -378,12 +378,12 @@ select.input {
 }
 
 .dashboard-grid {
-  display: grid; grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
   gap: 0.875rem; margin-bottom: 1.25rem;
 }
-@media (min-width: 768px) { .dashboard-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1280px) { .dashboard-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; } }
-@media (min-width: 1920px) { .dashboard-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; } }
+@media (min-width: 1024px) { .dashboard-grid { gap: 1rem; } }
+@media (min-width: 1920px) { .dashboard-grid { gap: 1.25rem; } }
 
 /* ===================== EXAMS ===================== */
 .exam-grid {
@@ -1254,8 +1254,9 @@ select.input {
 @media (max-width: 639px) {
   .welcome-banner { padding: 1rem 1.25rem; }
   .welcome-title { font-size: 0.88rem; }
-  .stats-grid { grid-template-columns: 1fr; gap: 0.55rem; }
+  .stats-grid { gap: 0.55rem; }
   .stat-card-value { font-size: 1.25rem; }
+  .stat-card { padding: 0.85rem; }
   .pomodoro-timer { font-size: 3rem; }
   .pomodoro-circle { width: 200px; height: 200px; }
   .pomodoro-fullscreen .pomodoro-timer { font-size: 3.5rem; }
@@ -1277,50 +1278,55 @@ select.input {
 
 /* --- Tablet (768px–1023px) --- */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .landing-hero { padding: 4.5rem 2rem 5rem; }
   .landing-title { font-size: 2rem; }
   .calendar-day { min-height: 60px; }
+  .stat-card { padding: 1rem 1.25rem; }
 }
 
 /* --- Laptop (1024px–1279px) --- */
 @media (min-width: 1024px) and (max-width: 1279px) {
-  .content { padding: 1.25rem 1.5rem; max-width: 1200px; }
-  .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  .content { padding: 1.25rem 1.5rem; }
   .landing-features { grid-template-columns: repeat(2, 1fr); }
   .landing-hero { padding: 5rem 2.5rem 6rem; }
   .landing-title { font-size: 2.25rem; }
   .pomodoro-circle { width: 240px; height: 240px; }
   .pomodoro-timer { font-size: 3.5rem; }
   .calendar-day { min-height: 65px; }
+  .stat-card { padding: 1.1rem 1.35rem; }
+  .stat-card-value { font-size: 1.6rem; }
 }
 
 /* --- Desktop (1280px–1535px) --- */
 @media (min-width: 1280px) and (max-width: 1535px) {
-  .content { max-width: 1320px; padding: 1.25rem 2rem; }
-  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .content { padding: 1.25rem 2rem; }
   .landing-features { grid-template-columns: repeat(3, 1fr); }
   .landing-hero { padding: 6rem 3rem 7rem; }
   .landing-title { font-size: 2.5rem; }
   .pomodoro-circle { width: 260px; height: 260px; }
+  .stat-card { padding: 1.15rem 1.5rem; }
+  .stat-card-value { font-size: 1.65rem; }
+  .welcome-banner { padding: 1.5rem 2rem; }
 }
 
 /* --- Desktop HD (1536px–1919px) --- */
 @media (min-width: 1536px) and (max-width: 1919px) {
-  .content { max-width: 1480px; padding: 1.5rem 2.5rem; }
-  .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .content { padding: 1.5rem 2.5rem; }
   .landing-hero { padding: 7rem 4rem 8rem; }
   .landing-title { font-size: 2.75rem; }
   .pomodoro-circle { width: 280px; height: 280px; }
   .pomodoro-timer { font-size: 4rem; }
   .calendar-day { min-height: 80px; }
+  .stat-card { padding: 1.25rem 1.65rem; }
+  .stat-card-value { font-size: 1.75rem; }
+  .welcome-banner { padding: 1.5rem 2.25rem; }
 }
 
 /* --- Ultrawide (1920px+) --- */
 @media (min-width: 1920px) {
-  .content { max-width: 1600px; padding: 1.5rem 2.5rem; }
-  .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .content { padding: 1.5rem 2.5rem; }
   .stat-card-value { font-size: 1.75rem; }
+  .stat-card { padding: 1.25rem 1.75rem; }
   .landing-hero { padding: 8rem 5rem 9rem; }
   .landing-title { font-size: 3rem; }
   .landing-section { padding: 3.5rem 2rem; }
@@ -1335,9 +1341,9 @@ select.input {
 
 /* --- 4K (2560px+) --- */
 @media (min-width: 2560px) {
-  .content { max-width: 1920px; padding: 2rem 3rem; }
-  .stats-grid { grid-template-columns: repeat(6, 1fr); }
+  .content { padding: 2rem 3rem; }
   .stat-card-value { font-size: 1.85rem; }
+  .stat-card { padding: 1.5rem 2rem; }
   .pomodoro-circle { width: 340px; height: 340px; }
   .pomodoro-timer { font-size: 5rem; }
 }
