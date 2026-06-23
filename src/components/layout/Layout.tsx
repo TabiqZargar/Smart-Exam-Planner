@@ -5,8 +5,6 @@ interface LayoutProps {
   children: React.ReactNode;
   currentPage: string;
   onNavigate: (page: string) => void;
-  dark: boolean;
-  onToggleDark: () => void;
   stats: UserStats;
 }
 
@@ -32,7 +30,7 @@ const NAV_SECTIONS = [
   },
 ];
 
-export default function Layout({ children, currentPage, onNavigate, dark, onToggleDark, stats }: LayoutProps) {
+export default function Layout({ children, currentPage, onNavigate, stats }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -101,13 +99,6 @@ export default function Layout({ children, currentPage, onNavigate, dark, onTogg
             </div>
           </div>
           <div className="topbar-right">
-            <button
-              className="topbar-btn"
-              onClick={onToggleDark}
-              aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {dark ? "☀️" : "🌙"}
-            </button>
             <div className="user-info">
               <span className="user-level">Lv.{stats.level}</span>
               <div className="user-avatar" role="img" aria-label={`User avatar, level ${stats.level}, ${stats.xp} XP`}>

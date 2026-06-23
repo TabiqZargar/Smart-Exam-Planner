@@ -1,4 +1,4 @@
-export type Theme = "light" | "dark";
+export type Theme = "dark";
 
 export interface Exam {
   id: string;

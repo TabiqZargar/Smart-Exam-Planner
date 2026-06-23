@@ -60,12 +60,6 @@ export default function App() {
     return hasData ? "dashboard" : "landing";
   });
 
-  const [dark, setDark] = useState(() => {
-    const t = localStorage.getItem("theme");
-    if (t) return t === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  });
-
   const [exams, setExams] = usePersistedState<Exam[]>("exams", []);
   const [subjects, setSubjects] = usePersistedState<Subject[]>("subjects", []);
   const [sessions, setSessions] = usePersistedState<StudySession[]>("sessions", []);
@@ -77,11 +71,6 @@ export default function App() {
   const [stats, setStats] = usePersistedState<UserStats>("stats", createInitialStats());
 
   const [notification, setNotification] = useState<{ icon: string; title: string; desc: string } | null>(null);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
-    localStorage.setItem("theme", dark ? "dark" : "light");
-  }, [dark]);
 
   const notify = (icon: string, title: string, desc: string) => {
     setNotification({ icon, title, desc });
@@ -264,8 +253,7 @@ export default function App() {
     <Layout
       currentPage={page}
       onNavigate={setPage}
-      dark={dark}
-      onToggleDark={() => setDark((d) => !d)}
+
       stats={stats}
     >
       {page === "dashboard" && (

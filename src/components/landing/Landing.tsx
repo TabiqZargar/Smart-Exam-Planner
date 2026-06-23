@@ -134,7 +134,7 @@ export default function Landing({ onGetStarted, stats }: LandingProps) {
             {
               icon: "⟐",
               title: "Theme Switcher",
-              desc: "Toggle between dark and light mode for any environment.",
+              desc: "Optimized dark theme for extended study sessions with reduced eye strain.",
             },
           ].map((f) => (
             <div
