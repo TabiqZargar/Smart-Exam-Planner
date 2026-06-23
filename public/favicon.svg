@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#050816"/>
+  <rect x="2" y="2" width="28" height="28" rx="4" fill="none" stroke="#00FF9D" stroke-width="1.5" opacity="0.3"/>
+  <text x="4" y="22" font-family="'JetBrains Mono',monospace" font-size="15" font-weight="500" fill="#00FF9D">$_</text>
+  <rect x="22" y="8" width="2" height="10" fill="#00E5FF">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+  </rect>
+</svg>
