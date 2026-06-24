@@ -1,6 +1,6 @@
-# $_ study_runtime
+# study_runtime
 
-A developer-themed productivity operating system for exam preparation. Plan, track, and compile knowledge with an interactive study pipeline.
+A study productivity suite for exam preparation. Plan, track, and manage your academic journey with interactive tools.
 
 <p align="center">
   <img src="./screenshots/landing.jpg" width="200" alt="Landing Page">
@@ -9,7 +9,7 @@ A developer-themed productivity operating system for exam preparation. Plan, tra
 ## Features
 
 ### 📊 Dashboard
-System monitor for study metrics, weekly hours, and exam queue. Get a bird's-eye view of your entire study pipeline.
+Overview of study metrics, weekly hours, exam queue, attendance, GPA, assignments, and countdowns — all in one place.
 
 <p align="center">
   <img src="./screenshots/dashboard.jpg" width="200" alt="Dashboard">
@@ -22,46 +22,61 @@ Track exams with syllabus progress meters and priority flags. Keep tabs on upcom
   <img src="./screenshots/exam.jpg" width="200" alt="Exam Manager">
 </p>
 
-### 📅 Calendar
-Sprint-style calendar for exams, study blocks, and revision sessions. Visualize your schedule at a glance.
+### 📅 Schedule & Calendar
+Weekly study schedule with day-by-day planning, revision tracking, and a full calendar view for exams, sessions, and plans.
 
 <p align="center">
   <img src="./screenshots/calendar.jpg" width="200" alt="Calendar">
 </p>
 
-### 🎯 Focus Engine
-Pomodoro-based concentration timer with terminal aesthetic. Stay in the flow with timed study sessions.
+### 🎯 Focus Timer
+Pomodoro-based concentration timer. Stay in the flow with timed study sessions and break intervals.
 
 <p align="center">
-  <img src="./screenshots/focus.jpg" width="200" alt="Focus Engine">
+  <img src="./screenshots/focus.jpg" width="200" alt="Focus Timer">
 </p>
 
-### 📋 Task Pipeline
-Organize tasks with priority sorting, due dates, and recurring jobs. Manage your to-do list like a dev backlog.
+### 📋 Task Manager
+Organize tasks with priority sorting, due dates, and recurring jobs. Track what needs to be done.
 
 <p align="center">
-  <img src="./screenshots/tasks.jpg" width="200" alt="Task Pipeline">
+  <img src="./screenshots/tasks.jpg" width="200" alt="Task Manager">
 </p>
 
-### 📓 Study Logger
-Log sessions with productivity metrics and mood tracking. Keep a detailed record of every study session.
+### 📓 Study Log
+Log study sessions with productivity metrics and mood tracking. Keep a detailed record of every session.
 
 <p align="center">
-  <img src="./screenshots/study-log.jpg" width="200" alt="Study Logger">
+  <img src="./screenshots/study-log.jpg" width="200" alt="Study Log">
 </p>
 
-### 📈 Analytics Engine
-Performance metrics with chart visualizations and readiness scores. Track your progress with data-driven insights.
+### 📈 Analytics
+Performance metrics with chart visualizations, exam readiness scores, and achievement tracking.
 
 <p align="center">
   <img src="./screenshots/analytics.jpg" width="200" alt="Analytics">
 </p>
 
+### ◈ Attendance Tracker
+Record attendance per subject (present/late/absent), view percentages, and get low-attendance warnings.
+
+### ∑ GPA Calculator
+Add courses with credits and grades. Calculate semester GPA and cumulative CGPA.
+
+### ⊡ Assignment Manager
+Create assignments with due dates and priority levels. Track completion status and view upcoming deadlines.
+
+### ⏱ Exam Countdown
+Create exams with date/time, view live countdown timers ticking down in real-time.
+
+### ⬒ Study Analytics
+Track study hours with daily, weekly, and monthly charts. View subject-wise breakdown with progress bars.
+
 ### More Features
-- **Schedule Generator** — AI engine that builds optimized study timelines based on difficulty
-- **Knowledge Base** — Notes system with tags, search indexing, and pinning
+- **Notes** — Notes system with tags, search, and pinning
 - **Achievements** — Unlock badges for streaks, study hours, and task completions
-- **XP System** — Level progression with experience points and streak tracking
+- **XP & Leveling** — Experience points and level progression with streak tracking
+- **Study Plans** — Generate optimized study timelines based on exam dates
 
 ## Tech Stack
 
