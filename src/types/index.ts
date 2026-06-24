@@ -103,3 +103,53 @@ export interface UserStats {
   weeklyHours: number[];
   lastStudyDate: string | null;
 }
+
+// Attendance Tracker
+export interface AttendanceSubject {
+  id: string;
+  name: string;
+  color: string;
+  totalClasses: number;
+  attendedClasses: number;
+}
+
+export interface AttendanceRecord {
+  id: string;
+  subjectId: string;
+  date: string;
+  status: "present" | "absent" | "late";
+}
+
+// GPA Calculator
+export type Grade = "A+" | "A" | "A-" | "B+" | "B" | "B-" | "C+" | "C" | "C-" | "D+" | "D" | "F";
+
+export interface Course {
+  id: string;
+  name: string;
+  credits: number;
+  grade: Grade;
+  semester: number;
+}
+
+// Assignment Manager
+export interface Assignment {
+  id: string;
+  title: string;
+  subject: string;
+  description: string;
+  dueDate: string;
+  priority: "low" | "medium" | "high" | "critical";
+  completed: boolean;
+  createdAt: string;
+}
+
+// Exam Countdown
+export interface ExamCountdown {
+  id: string;
+  title: string;
+  subject: string;
+  date: string;
+  time: string;
+  color: string;
+  createdAt: string;
+}

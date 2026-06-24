@@ -28,6 +28,16 @@ const NAV_SECTIONS = [
       { id: "calendar", label: "Calendar", icon: "⟡" },
     ],
   },
+  {
+    label: "tools",
+    items: [
+      { id: "attendance", label: "Attendance", icon: "◈" },
+      { id: "gpa", label: "GPA", icon: "∑" },
+      { id: "assignments", label: "Assignments", icon: "⊡" },
+      { id: "examcountdown", label: "Countdown", icon: "⏱" },
+      { id: "studyanalytics", label: "Study Analytics", icon: "⬒" },
+    ],
+  },
 ];
 
 export default function Layout({ children, currentPage, onNavigate, stats }: LayoutProps) {

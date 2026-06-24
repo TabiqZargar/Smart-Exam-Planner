@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { format, startOfWeek, endOfWeek, eachDayOfInterval } from "date-fns";
-import type { Exam, StudySession, Task, UserStats, StudyPlan, PomodoroSession } from "../../types";
+import type { Exam, StudySession, Task, UserStats, StudyPlan, PomodoroSession, AttendanceSubject, AttendanceRecord, Course, Assignment, ExamCountdown } from "../../types";
 import { daysUntil, formatDate, getGradeColor, calculateLevel } from "../../utils/helpers";
 
 interface DashboardProps {
@@ -10,10 +10,15 @@ interface DashboardProps {
   stats: UserStats;
   plans: StudyPlan[];
   pomodoros: PomodoroSession[];
+  attendanceSubjects: AttendanceSubject[];
+  attendanceRecords: AttendanceRecord[];
+  courses: Course[];
+  assignments: Assignment[];
+  examCountdowns: ExamCountdown[];
   onNavigate: (page: string) => void;
 }
 
-export default function Dashboard({ exams, sessions, tasks, stats, plans, pomodoros, onNavigate }: DashboardProps) {
+export default function Dashboard({ exams, sessions, tasks, stats, plans, pomodoros, attendanceSubjects, attendanceRecords, courses, assignments, examCountdowns, onNavigate }: DashboardProps) {
   const today = format(new Date(), "yyyy-MM-dd");
 
   const upcomingExams = useMemo(() =>
@@ -70,7 +75,7 @@ export default function Dashboard({ exams, sessions, tasks, stats, plans, pomodo
             <span className="badge badge-accent">{todaySessions.length} today</span>
           </div>
           <div className="stat-card-value" style={{ color: "var(--accent)" }}>{Math.round(stats.totalStudyHours)}h</div>
-          <div className="stat-card-label">// study_hours</div>
+          <div className="stat-card-label">study_hours</div>
         </div>
 
         <div className="stat-card" onClick={() => onNavigate("pomodoro")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onNavigate("pomodoro")} aria-label="View focus timer">
@@ -79,7 +84,7 @@ export default function Dashboard({ exams, sessions, tasks, stats, plans, pomodo
             <span className="badge badge-success">{todayPomodoro.length} today</span>
           </div>
           <div className="stat-card-value" style={{ color: "var(--secondary)" }}>{stats.totalFocusSessions}</div>
-          <div className="stat-card-label">// focus_sessions</div>
+          <div className="stat-card-label">focus_sessions</div>
         </div>
 
         <div className="stat-card" onClick={() => onNavigate("tasks")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onNavigate("tasks")} aria-label="View tasks">
@@ -88,7 +93,7 @@ export default function Dashboard({ exams, sessions, tasks, stats, plans, pomodo
             <span className="badge badge-warning">{pendingTasks.length} pending</span>
           </div>
           <div className="stat-card-value" style={{ color: "var(--warning)" }}>{taskCompletion}%</div>
-          <div className="stat-card-label">// task_completion</div>
+          <div className="stat-card-label">task_completion</div>
         </div>
 
         <div className="stat-card" aria-label="Exam readiness">
@@ -97,7 +102,63 @@ export default function Dashboard({ exams, sessions, tasks, stats, plans, pomodo
             <span className="badge badge-accent">{upcomingExams.length} exams</span>
           </div>
           <div className="stat-card-value" style={{ color: getGradeColor(planProgress) }}>{planProgress}%</div>
-          <div className="stat-card-label">// plan_readiness</div>
+          <div className="stat-card-label">plan_readiness</div>
+        </div>
+      </div>
+
+      <div className="stats-grid">
+        <div className="stat-card" onClick={() => onNavigate("attendance")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onNavigate("attendance")} aria-label="View attendance">
+          <div className="stat-card-header">
+            <div className="stat-card-icon" style={{ background: "var(--accent-soft)" }} aria-hidden="true">◈</div>
+          </div>
+          <div className="stat-card-value" style={{ color: "var(--accent)", fontSize: "1.1rem" }}>
+            {attendanceRecords.length > 0 ? `${Math.round((attendanceRecords.filter((r) => r.status !== "absent").length / attendanceRecords.length) * 100)}%` : "N/A"}
+          </div>
+          <div className="stat-card-label">attendance</div>
+        </div>
+
+        <div className="stat-card" onClick={() => onNavigate("gpa")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onNavigate("gpa")} aria-label="View GPA">
+          <div className="stat-card-header">
+            <div className="stat-card-icon" style={{ background: "var(--success-soft)" }} aria-hidden="true">∑</div>
+          </div>
+          <div className="stat-card-value" style={{ color: "var(--success)", fontSize: "1.1rem" }}>
+            {(() => {
+              const totalCred = courses.reduce((s, c) => s + c.credits, 0);
+              const totalPts = courses.reduce((s, c) => s + c.credits * ({ "A+": 4.0, "A": 4.0, "A-": 3.7, "B+": 3.3, "B": 3.0, "B-": 2.7, "C+": 2.3, "C": 2.0, "C-": 1.7, "D+": 1.3, "D": 1.0, "F": 0.0 }[c.grade] || 0), 0);
+              return totalCred > 0 ? totalPts / totalCred : "N/A";
+            })()}
+          </div>
+          <div className="stat-card-label">gpa</div>
+        </div>
+
+        <div className="stat-card" onClick={() => onNavigate("assignments")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onNavigate("assignments")} aria-label="View assignments">
+          <div className="stat-card-header">
+            <div className="stat-card-icon" style={{ background: "var(--warning-soft)" }} aria-hidden="true">⊡</div>
+            <span className="badge badge-warning">{assignments.filter((a) => !a.completed).length} pending</span>
+          </div>
+          <div className="stat-card-value" style={{ color: "var(--warning)", fontSize: "1.1rem" }}>{assignments.length}</div>
+          <div className="stat-card-label">assignments</div>
+        </div>
+
+        <div className="stat-card" onClick={() => onNavigate("examcountdown")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onNavigate("examcountdown")} aria-label="View exam countdowns">
+          <div className="stat-card-header">
+            <div className="stat-card-icon" style={{ background: "var(--danger-soft)" }} aria-hidden="true">⏱</div>
+            <span className="badge badge-accent">{examCountdowns.length} exams</span>
+          </div>
+          <div className="stat-card-value" style={{ color: "var(--secondary)", fontSize: "1.1rem" }}>
+            {examCountdowns.length > 0 ? `${Math.max(0, Math.ceil((new Date(Math.min(...examCountdowns.map((e) => new Date(e.date).getTime()))).getTime() - Date.now()) / (1000*60*60*24)))}d` : "N/A"}
+          </div>
+          <div className="stat-card-label">next_exam</div>
+        </div>
+
+        <div className="stat-card" onClick={() => onNavigate("studyanalytics")} role="button" tabIndex={0} onKeyDown={(e) => e.key === "Enter" && onNavigate("studyanalytics")} aria-label="View study analytics">
+          <div className="stat-card-header">
+            <div className="stat-card-icon" style={{ background: "var(--accent-soft)" }} aria-hidden="true">⬒</div>
+          </div>
+          <div className="stat-card-value" style={{ color: "var(--accent)", fontSize: "1.1rem" }}>
+            {(() => { const w = sessions.filter((s) => { const d = new Date(s.date); const now = new Date(); const start = startOfWeek(now, { weekStartsOn: 1 }); return d >= start && d <= endOfWeek(now, { weekStartsOn: 1 }); }); return `${Math.round(w.reduce((sum, s) => sum + s.duration, 0) / 60 * 10) / 10}h`; })()}
+          </div>
+          <div className="stat-card-label">this_week</div>
         </div>
       </div>
 

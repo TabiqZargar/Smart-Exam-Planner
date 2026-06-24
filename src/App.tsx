@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { format } from "date-fns";
-import type { Exam, Subject, StudySession, Task, PomodoroSession, Note, StudyPlan, Achievement, UserStats } from "./types";
+import type { Exam, Subject, StudySession, Task, PomodoroSession, Note, StudyPlan, Achievement, UserStats, AttendanceSubject, AttendanceRecord, Course, Assignment, ExamCountdown } from "./types";
 import { calculateLevel } from "./utils/helpers";
 import { loadData, saveData } from "./utils/storage";
 import Layout from "./components/layout/Layout";
@@ -14,6 +14,11 @@ import Notes from "./components/notes/Notes";
 import Analytics from "./components/analytics/Analytics";
 import CalendarView from "./components/calendar/CalendarView";
 import Landing from "./components/landing/Landing";
+import Attendance from "./components/attendance/Attendance";
+import GPA from "./components/gpa/GPA";
+import Assignments from "./components/assignments/Assignments";
+import ExamCountdownPage from "./components/examcountdown/ExamCountdown";
+import StudyAnalytics from "./components/studyanalytics/StudyAnalytics";
 
 const STORAGE_PREFIX = "study_runtime_";
 
@@ -69,6 +74,12 @@ export default function App() {
   const [plans, setPlans] = usePersistedState<StudyPlan[]>("plans", []);
   const [achievements, setAchievements] = usePersistedState<Achievement[]>("achievements", DEFAULT_ACHIEVEMENTS);
   const [stats, setStats] = usePersistedState<UserStats>("stats", createInitialStats());
+
+  const [attendanceSubjects, setAttendanceSubjects] = usePersistedState<AttendanceSubject[]>("attendanceSubjects", []);
+  const [attendanceRecords, setAttendanceRecords] = usePersistedState<AttendanceRecord[]>("attendanceRecords", []);
+  const [courses, setCourses] = usePersistedState<Course[]>("courses", []);
+  const [assignments, setAssignments] = usePersistedState<Assignment[]>("assignments", []);
+  const [examCountdowns, setExamCountdowns] = usePersistedState<ExamCountdown[]>("examCountdowns", []);
 
   const [notification, setNotification] = useState<{ icon: string; title: string; desc: string } | null>(null);
 
@@ -239,6 +250,55 @@ export default function App() {
     setNotes((prev) => prev.map((n) => n.id === id ? { ...n, pinned: !n.pinned, updatedAt: new Date().toISOString() } : n));
   }, [setNotes]);
 
+  const handleAddAttendanceSubject = useCallback((s: AttendanceSubject) => {
+    setAttendanceSubjects((prev) => [...prev, s]);
+  }, [setAttendanceSubjects]);
+
+  const handleRecordAttendance = useCallback((r: AttendanceRecord) => {
+    setAttendanceRecords((prev) => [...prev, r]);
+    const subject = attendanceSubjects.find((s) => s.id === r.subjectId);
+    if (subject) {
+      setAttendanceSubjects((prev) => prev.map((s) => {
+        if (s.id !== r.subjectId) return s;
+        const totalInc = 1;
+        const attendedInc = r.status !== "absent" ? 1 : 0;
+        return { ...s, totalClasses: s.totalClasses + totalInc, attendedClasses: s.attendedClasses + attendedInc };
+      }));
+    }
+  }, [setAttendanceRecords, setAttendanceSubjects, attendanceSubjects]);
+
+  const handleDeleteAttendanceSubject = useCallback((id: string) => {
+    setAttendanceSubjects((prev) => prev.filter((s) => s.id !== id));
+  }, [setAttendanceSubjects]);
+
+  const handleAddCourse = useCallback((c: Course) => {
+    setCourses((prev) => [...prev, c]);
+  }, [setCourses]);
+
+  const handleDeleteCourse = useCallback((id: string) => {
+    setCourses((prev) => prev.filter((c) => c.id !== id));
+  }, [setCourses]);
+
+  const handleAddAssignment = useCallback((a: Assignment) => {
+    setAssignments((prev) => [...prev, a]);
+  }, [setAssignments]);
+
+  const handleToggleAssignment = useCallback((id: string) => {
+    setAssignments((prev) => prev.map((a) => a.id === id ? { ...a, completed: !a.completed } : a));
+  }, [setAssignments]);
+
+  const handleDeleteAssignment = useCallback((id: string) => {
+    setAssignments((prev) => prev.filter((a) => a.id !== id));
+  }, [setAssignments]);
+
+  const handleAddExamCountdown = useCallback((e: ExamCountdown) => {
+    setExamCountdowns((prev) => [...prev, e]);
+  }, [setExamCountdowns]);
+
+  const handleDeleteExamCountdown = useCallback((id: string) => {
+    setExamCountdowns((prev) => prev.filter((e) => e.id !== id));
+  }, [setExamCountdowns]);
+
   const getCompletedTasks = useMemo(() => tasks.filter((t) => t.completed).length, [tasks]);
 
   if (page === "landing") {
@@ -264,6 +324,11 @@ export default function App() {
           stats={stats}
           plans={plans}
           pomodoros={pomodoros}
+          attendanceSubjects={attendanceSubjects}
+          attendanceRecords={attendanceRecords}
+          courses={courses}
+          assignments={assignments}
+          examCountdowns={examCountdowns}
           onNavigate={setPage}
         />
       )}
@@ -336,6 +401,42 @@ export default function App() {
           exams={exams}
           sessions={sessions}
           plans={plans}
+        />
+      )}
+      {page === "attendance" && (
+        <Attendance
+          subjects={attendanceSubjects}
+          records={attendanceRecords}
+          onAddSubject={handleAddAttendanceSubject}
+          onRecordAttendance={handleRecordAttendance}
+          onDeleteSubject={handleDeleteAttendanceSubject}
+        />
+      )}
+      {page === "gpa" && (
+        <GPA
+          courses={courses}
+          onAddCourse={handleAddCourse}
+          onDeleteCourse={handleDeleteCourse}
+        />
+      )}
+      {page === "assignments" && (
+        <Assignments
+          assignments={assignments}
+          onAddAssignment={handleAddAssignment}
+          onToggleAssignment={handleToggleAssignment}
+          onDeleteAssignment={handleDeleteAssignment}
+        />
+      )}
+      {page === "examcountdown" && (
+        <ExamCountdownPage
+          exams={examCountdowns}
+          onAddExam={handleAddExamCountdown}
+          onDeleteExam={handleDeleteExamCountdown}
+        />
+      )}
+      {page === "studyanalytics" && (
+        <StudyAnalytics
+          sessions={sessions}
         />
       )}
 
