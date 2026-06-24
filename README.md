@@ -3,7 +3,7 @@
 A developer-themed productivity operating system for exam preparation. Plan, track, and compile knowledge with an interactive study pipeline.
 
 <p align="center">
-  <img src="./screenshots/landing.jpg" width="500" alt="Landing Page">
+  <img src="./screenshots/landing.jpg" width="200" alt="Landing Page">
 </p>
 
 ## Features
