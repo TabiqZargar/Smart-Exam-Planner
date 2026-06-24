@@ -2,44 +2,60 @@
 
 A developer-themed productivity operating system for exam preparation. Plan, track, and compile knowledge with an interactive study pipeline.
 
-![Landing Page](screenshots/landing.jpg)
+<p align="center">
+  <img src="./screenshots/landing.jpg" width="700" alt="Landing Page">
+</p>
 
 ## Features
 
 ### 📊 Dashboard
 System monitor for study metrics, weekly hours, and exam queue. Get a bird's-eye view of your entire study pipeline.
 
-![Dashboard](screenshots/dashboard.jpg)
+<p align="center">
+  <img src="./screenshots/dashboard.jpg" width="700" alt="Dashboard">
+</p>
 
 ### 📝 Exam Manager
 Track exams with syllabus progress meters and priority flags. Keep tabs on upcoming tests and completion status.
 
-![Exam Manager](screenshots/exam.jpg)
+<p align="center">
+  <img src="./screenshots/exam.jpg" width="700" alt="Exam Manager">
+</p>
 
 ### 📅 Calendar
 Sprint-style calendar for exams, study blocks, and revision sessions. Visualize your schedule at a glance.
 
-![Calendar](screenshots/calendar.jpg)
+<p align="center">
+  <img src="./screenshots/calendar.jpg" width="700" alt="Calendar">
+</p>
 
 ### 🎯 Focus Engine
 Pomodoro-based concentration timer with terminal aesthetic. Stay in the flow with timed study sessions.
 
-![Focus Engine](screenshots/focus.jpg)
+<p align="center">
+  <img src="./screenshots/focus.jpg" width="700" alt="Focus Engine">
+</p>
 
 ### 📋 Task Pipeline
 Organize tasks with priority sorting, due dates, and recurring jobs. Manage your to-do list like a dev backlog.
 
-![Task Pipeline](screenshots/tasks.jpg)
+<p align="center">
+  <img src="./screenshots/tasks.jpg" width="700" alt="Task Pipeline">
+</p>
 
 ### 📓 Study Logger
 Log sessions with productivity metrics and mood tracking. Keep a detailed record of every study session.
 
-![Study Logger](screenshots/study-log.jpg)
+<p align="center">
+  <img src="./screenshots/study-log.jpg" width="700" alt="Study Logger">
+</p>
 
 ### 📈 Analytics Engine
 Performance metrics with chart visualizations and readiness scores. Track your progress with data-driven insights.
 
-![Analytics](screenshots/analytics.jpg)
+<p align="center">
+  <img src="./screenshots/analytics.jpg" width="700" alt="Analytics">
+</p>
 
 ### More Features
 - **Schedule Generator** — AI engine that builds optimized study timelines based on difficulty
